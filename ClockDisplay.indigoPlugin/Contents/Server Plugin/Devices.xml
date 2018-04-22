@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Devices>
+	<Device type="custom" id="clockdisplay">
+		<Name>Clock Display</Name>
+		<ConfigUI>
+			<Field type="checkbox" id="useSeconds" defaultValue="false">
+				<Label>Use seconds:</Label>
+				<Description>Include support for seconds?</Description>
+				</Field>
+		</ConfigUI>
+		<States>
+			<State id="DateUK_DDMMYY"><ValueType>String</ValueType><TriggerLabel>DateUK_DDMMYY</TriggerLabel><ControlPageLabel>DateUK_DDMMYY</ControlPageLabel></State>
+			<State id="DateUK_DDMMYYYY"><ValueType>String</ValueType><TriggerLabel>DateUK_DDMMYYYY</TriggerLabel><ControlPageLabel>DateUK_DDMMYYYY</ControlPageLabel></State>
+			<State id="DateUS_MMDDYY"><ValueType>String</ValueType><TriggerLabel>DateUS_MMDDYY</TriggerLabel><ControlPageLabel>DateUS_MMDDYY</ControlPageLabel></State>
+			<State id="DateUS_MMDDYYYY"><ValueType>String</ValueType><TriggerLabel>DateUS_MMDDYYYY</TriggerLabel><ControlPageLabel>DateUS_MMDDYYYY</ControlPageLabel></State>
+			<State id="Day_Long"><ValueType>String</ValueType><TriggerLabel>Day_Long</TriggerLabel><ControlPageLabel>Day_Long</ControlPageLabel></State>
+			<State id="Day_Short"><ValueType>String</ValueType><TriggerLabel>Day_Short</TriggerLabel><ControlPageLabel>Day_Short</ControlPageLabel></State>
+			<State id="Time_12HHMM"><ValueType>String</ValueType><TriggerLabel>Time_12HHMM</TriggerLabel><ControlPageLabel>Time_12HHMM</ControlPageLabel></State>
+			<State id="Time_12HHMMSS"><ValueType>String</ValueType><TriggerLabel>Time_12HHMMSS</TriggerLabel><ControlPageLabel>Time_12HHMMSS</ControlPageLabel></State>
+			<State id="Time_24HHMM"><ValueType>String</ValueType><TriggerLabel>Time_24HHMM</TriggerLabel><ControlPageLabel>Time_24HHMM</ControlPageLabel></State>
+			<State id="Time_24HHMMSS"><ValueType>String</ValueType><TriggerLabel>Time_24HHMMSS</TriggerLabel><ControlPageLabel>Time_24HHMMSS</ControlPageLabel></State>
+			<State id="Time_12HHMMAMPM"><ValueType>String</ValueType><TriggerLabel>Time_12HHMMAMPM</TriggerLabel><ControlPageLabel>Time_12HHMMAMPM</ControlPageLabel></State>
+			<State id="Time_12HHMMSSAMPM"><ValueType>String</ValueType><TriggerLabel>Time_12HHMMSSAMPM</TriggerLabel><ControlPageLabel>Time_12HHMMSSAMPM</ControlPageLabel></State>
+			<State id="Time_24HHMMAMPM"><ValueType>String</ValueType><TriggerLabel>Time_24HHMMAMPM</TriggerLabel><ControlPageLabel>Time_24HHMMAMPM</ControlPageLabel></State>
+			<State id="Time_24HHMMSSAMPM"><ValueType>String</ValueType><TriggerLabel>Time_24HHMMSSAMPM</TriggerLabel><ControlPageLabel>Time_24HHMMSSAMPM</ControlPageLabel></State>
+			<State id="LocalDate"><ValueType>String</ValueType><TriggerLabel>LocalDate</TriggerLabel><ControlPageLabel>LocalDate</ControlPageLabel></State>
+			<State id="LocalTime"><ValueType>String</ValueType><TriggerLabel>LocalTime</TriggerLabel><ControlPageLabel>LocalTime</ControlPageLabel></State>
+		</States>
+		<UiDisplayStateId>LocalTime</UiDisplayStateId>
+	</Device>
+</Devices>

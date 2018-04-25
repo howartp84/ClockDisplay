@@ -28,6 +28,9 @@ class Plugin(indigo.PluginBase):
 		if not userCancelled:
 			self.useSeconds = valuesDict.get("useSeconds", False)
 		return True
+		
+	def deviceStartComm(self, dev):
+		dev.stateListOrDisplayStateIdChanged()
 
 	def runConcurrentThread(self):
 		try:
@@ -43,6 +46,18 @@ class Plugin(indigo.PluginBase):
 						d.updateStateOnServer("Day_Long",time.strftime("%A"))
 						d.updateStateOnServer("Day_Short",time.strftime("%a"))
 						d.updateStateOnServer("LocalDate",time.strftime("%x"))
+					d.updateStateOnServer("Time_12HMM",time.strftime("%-I:%M"))
+					d.updateStateOnServer("Time_12HMMSS",time.strftime("%-I:%M:%S"))
+					d.updateStateOnServer("Time_24HMM",time.strftime("%-H:%M"))
+					d.updateStateOnServer("Time_24HMMSS",time.strftime("%-H:%M:%S"))
+					d.updateStateOnServer("Time_12HMMAMPM",time.strftime("%-I:%M %p"))
+					d.updateStateOnServer("Time_12HMMSSAMPM",time.strftime("%-I:%M:%S %p"))
+					d.updateStateOnServer("Time_24HMMAMPM",time.strftime("%-H:%M %p"))
+					d.updateStateOnServer("Time_24HMMSSAMPM",time.strftime("%-H:%M:%S %p"))
+					d.updateStateOnServer("Time_12HMMAMPML",time.strftime("%-I:%M %p").lower())
+					d.updateStateOnServer("Time_12HMMSSAMPML",time.strftime("%-I:%M:%S %p").lower())
+					d.updateStateOnServer("Time_24HMMAMPML",time.strftime("%-H:%M %p").lower())
+					d.updateStateOnServer("Time_24HMMSSAMPML",time.strftime("%-H:%M %p").lower())
 					d.updateStateOnServer("Time_12HHMM",time.strftime("%I:%M"))
 					d.updateStateOnServer("Time_12HHMMSS",time.strftime("%I:%M:%S"))
 					d.updateStateOnServer("Time_24HHMM",time.strftime("%H:%M"))
@@ -51,6 +66,10 @@ class Plugin(indigo.PluginBase):
 					d.updateStateOnServer("Time_12HHMMSSAMPM",time.strftime("%I:%M:%S %p"))
 					d.updateStateOnServer("Time_24HHMMAMPM",time.strftime("%H:%M %p"))
 					d.updateStateOnServer("Time_24HHMMSSAMPM",time.strftime("%H:%M:%S %p"))
+					d.updateStateOnServer("Time_12HHMMAMPML",time.strftime("%I:%M %p").lower())
+					d.updateStateOnServer("Time_12HHMMSSAMPML",time.strftime("%I:%M:%S %p").lower())
+					d.updateStateOnServer("Time_24HHMMAMPML",time.strftime("%H:%M %p").lower())
+					d.updateStateOnServer("Time_24HHMMSSAMPML",time.strftime("%H:%M %p").lower())
 					d.updateStateOnServer("LocalTime",time.strftime("%X"))
 		
 					if (d.ownerProps.get("useSeconds",False)): #True

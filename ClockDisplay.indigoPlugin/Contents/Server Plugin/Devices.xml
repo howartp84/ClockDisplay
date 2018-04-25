@@ -15,6 +15,18 @@
 			<State id="DateUS_MMDDYYYY"><ValueType>String</ValueType><TriggerLabel>DateUS_MMDDYYYY</TriggerLabel><ControlPageLabel>DateUS_MMDDYYYY</ControlPageLabel></State>
 			<State id="Day_Long"><ValueType>String</ValueType><TriggerLabel>Day_Long</TriggerLabel><ControlPageLabel>Day_Long</ControlPageLabel></State>
 			<State id="Day_Short"><ValueType>String</ValueType><TriggerLabel>Day_Short</TriggerLabel><ControlPageLabel>Day_Short</ControlPageLabel></State>
+			<State id="Time_12HMM"><ValueType>String</ValueType><TriggerLabel>Time_12HMM</TriggerLabel><ControlPageLabel>Time_12HMM</ControlPageLabel></State>
+			<State id="Time_12HMMSS"><ValueType>String</ValueType><TriggerLabel>Time_12HMMSS</TriggerLabel><ControlPageLabel>Time_12HMMSS</ControlPageLabel></State>
+			<State id="Time_24HMM"><ValueType>String</ValueType><TriggerLabel>Time_24HMM</TriggerLabel><ControlPageLabel>Time_24HMM</ControlPageLabel></State>
+			<State id="Time_24HMMSS"><ValueType>String</ValueType><TriggerLabel>Time_24HMMSS</TriggerLabel><ControlPageLabel>Time_24HMMSS</ControlPageLabel></State>
+			<State id="Time_12HMMAMPM"><ValueType>String</ValueType><TriggerLabel>Time_12HMMAMPM</TriggerLabel><ControlPageLabel>Time_12HMMAMPM</ControlPageLabel></State>
+			<State id="Time_12HMMSSAMPM"><ValueType>String</ValueType><TriggerLabel>Time_12HMMSSAMPM</TriggerLabel><ControlPageLabel>Time_12HMMSSAMPM</ControlPageLabel></State>
+			<State id="Time_24HMMAMPM"><ValueType>String</ValueType><TriggerLabel>Time_24HMMAMPM</TriggerLabel><ControlPageLabel>Time_24HMMAMPM</ControlPageLabel></State>
+			<State id="Time_24HMMSSAMPM"><ValueType>String</ValueType><TriggerLabel>Time_24HMMSSAMPM</TriggerLabel><ControlPageLabel>Time_24HMMSSAMPM</ControlPageLabel></State>
+			<State id="Time_12HMMAMPML"><ValueType>String</ValueType><TriggerLabel>Time_12HMMAMPML</TriggerLabel><ControlPageLabel>Time_12HMMAMPML</ControlPageLabel></State>
+			<State id="Time_12HMMSSAMPML"><ValueType>String</ValueType><TriggerLabel>Time_12HMMSSAMPML</TriggerLabel><ControlPageLabel>Time_12HMMSSAMPML</ControlPageLabel></State>
+			<State id="Time_24HMMAMPML"><ValueType>String</ValueType><TriggerLabel>Time_24HMMAMPML</TriggerLabel><ControlPageLabel>Time_24HMMAMPML</ControlPageLabel></State>
+			<State id="Time_24HMMSSAMPML"><ValueType>String</ValueType><TriggerLabel>Time_24HMMSSAMPML</TriggerLabel><ControlPageLabel>Time_24HMMSSAMPML</ControlPageLabel></State>
 			<State id="Time_12HHMM"><ValueType>String</ValueType><TriggerLabel>Time_12HHMM</TriggerLabel><ControlPageLabel>Time_12HHMM</ControlPageLabel></State>
 			<State id="Time_12HHMMSS"><ValueType>String</ValueType><TriggerLabel>Time_12HHMMSS</TriggerLabel><ControlPageLabel>Time_12HHMMSS</ControlPageLabel></State>
 			<State id="Time_24HHMM"><ValueType>String</ValueType><TriggerLabel>Time_24HHMM</TriggerLabel><ControlPageLabel>Time_24HHMM</ControlPageLabel></State>
@@ -23,6 +35,10 @@
 			<State id="Time_12HHMMSSAMPM"><ValueType>String</ValueType><TriggerLabel>Time_12HHMMSSAMPM</TriggerLabel><ControlPageLabel>Time_12HHMMSSAMPM</ControlPageLabel></State>
 			<State id="Time_24HHMMAMPM"><ValueType>String</ValueType><TriggerLabel>Time_24HHMMAMPM</TriggerLabel><ControlPageLabel>Time_24HHMMAMPM</ControlPageLabel></State>
 			<State id="Time_24HHMMSSAMPM"><ValueType>String</ValueType><TriggerLabel>Time_24HHMMSSAMPM</TriggerLabel><ControlPageLabel>Time_24HHMMSSAMPM</ControlPageLabel></State>
+			<State id="Time_12HHMMAMPML"><ValueType>String</ValueType><TriggerLabel>Time_12HHMMAMPML</TriggerLabel><ControlPageLabel>Time_12HHMMAMPML</ControlPageLabel></State>
+			<State id="Time_12HHMMSSAMPML"><ValueType>String</ValueType><TriggerLabel>Time_12HHMMSSAMPML</TriggerLabel><ControlPageLabel>Time_12HHMMSSAMPML</ControlPageLabel></State>
+			<State id="Time_24HHMMAMPML"><ValueType>String</ValueType><TriggerLabel>Time_24HHMMAMPML</TriggerLabel><ControlPageLabel>Time_24HHMMAMPML</ControlPageLabel></State>
+			<State id="Time_24HHMMSSAMPML"><ValueType>String</ValueType><TriggerLabel>Time_24HHMMSSAMPML</TriggerLabel><ControlPageLabel>Time_24HHMMSSAMPML</ControlPageLabel></State>
 			<State id="LocalDate"><ValueType>String</ValueType><TriggerLabel>LocalDate</TriggerLabel><ControlPageLabel>LocalDate</ControlPageLabel></State>
 			<State id="LocalTime"><ValueType>String</ValueType><TriggerLabel>LocalTime</TriggerLabel><ControlPageLabel>LocalTime</ControlPageLabel></State>
 		</States>

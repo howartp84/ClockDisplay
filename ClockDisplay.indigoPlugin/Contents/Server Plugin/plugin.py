@@ -31,50 +31,59 @@ class Plugin(indigo.PluginBase):
 		
 	def deviceStartComm(self, dev):
 		dev.stateListOrDisplayStateIdChanged()
+		self.sleepTime = 30
 
 	def runConcurrentThread(self):
 		try:
 			while True:
 			
 				for d in indigo.devices.iter("self.clockdisplay"):
-					if (time.strftime("%d/%m/%y") != d.states["DateUK_DDMMYY"]):
-						indigo.server.log("New Day")
-						d.updateStateOnServer("DateUK_DDMMYY",time.strftime("%d/%m/%y"))
-						d.updateStateOnServer("DateUK_DDMMYYYY",time.strftime("%d/%m/%Y"))
-						d.updateStateOnServer("DateUS_MMDDYY",time.strftime("%m/%d/%y"))
-						d.updateStateOnServer("DateUS_MMDDYYYY",time.strftime("%m/%d/%Y"))
-						d.updateStateOnServer("Day_Long",time.strftime("%A"))
-						d.updateStateOnServer("Day_Short",time.strftime("%a"))
-						d.updateStateOnServer("LocalDate",time.strftime("%x"))
-					d.updateStateOnServer("Time_12HMM",time.strftime("%-I:%M"))
-					d.updateStateOnServer("Time_12HMMSS",time.strftime("%-I:%M:%S"))
-					d.updateStateOnServer("Time_24HMM",time.strftime("%-H:%M"))
-					d.updateStateOnServer("Time_24HMMSS",time.strftime("%-H:%M:%S"))
-					d.updateStateOnServer("Time_12HMMAMPM",time.strftime("%-I:%M %p"))
-					d.updateStateOnServer("Time_12HMMSSAMPM",time.strftime("%-I:%M:%S %p"))
-					d.updateStateOnServer("Time_24HMMAMPM",time.strftime("%-H:%M %p"))
-					d.updateStateOnServer("Time_24HMMSSAMPM",time.strftime("%-H:%M:%S %p"))
-					d.updateStateOnServer("Time_12HMMAMPML",time.strftime("%-I:%M %p").lower())
-					d.updateStateOnServer("Time_12HMMSSAMPML",time.strftime("%-I:%M:%S %p").lower())
-					d.updateStateOnServer("Time_24HMMAMPML",time.strftime("%-H:%M %p").lower())
-					d.updateStateOnServer("Time_24HMMSSAMPML",time.strftime("%-H:%M %p").lower())
-					d.updateStateOnServer("Time_12HHMM",time.strftime("%I:%M"))
-					d.updateStateOnServer("Time_12HHMMSS",time.strftime("%I:%M:%S"))
-					d.updateStateOnServer("Time_24HHMM",time.strftime("%H:%M"))
-					d.updateStateOnServer("Time_24HHMMSS",time.strftime("%H:%M:%S"))
-					d.updateStateOnServer("Time_12HHMMAMPM",time.strftime("%I:%M %p"))
-					d.updateStateOnServer("Time_12HHMMSSAMPM",time.strftime("%I:%M:%S %p"))
-					d.updateStateOnServer("Time_24HHMMAMPM",time.strftime("%H:%M %p"))
-					d.updateStateOnServer("Time_24HHMMSSAMPM",time.strftime("%H:%M:%S %p"))
-					d.updateStateOnServer("Time_12HHMMAMPML",time.strftime("%I:%M %p").lower())
-					d.updateStateOnServer("Time_12HHMMSSAMPML",time.strftime("%I:%M:%S %p").lower())
-					d.updateStateOnServer("Time_24HHMMAMPML",time.strftime("%H:%M %p").lower())
-					d.updateStateOnServer("Time_24HHMMSSAMPML",time.strftime("%H:%M %p").lower())
-					d.updateStateOnServer("LocalTime",time.strftime("%X"))
+					key_value_list = [
+					#if (time.strftime("%d/%m/%y") != d.states["DateUK_DDMMYY"]):
+						#indigo.server.log("New Day")
+					{"key":"DateUK_DDMMYY","value":time.strftime("%d/%m/%y")},
+					{"key":"DateUK_DDMMYYYY","value":time.strftime("%d/%m/%Y")},
+					{"key":"DateUS_MMDDYY","value":time.strftime("%m/%d/%y")},
+					{"key":"DateUS_MMDDYYYY","value":time.strftime("%m/%d/%Y")},
+					{"key":"Day_Long","value":time.strftime("%A")},
+					{"key":"Day_Short","value":time.strftime("%a")},
+					{"key":"LocalDate","value":time.strftime("%x")},
+					{"key":"Time_12HHMM","value":time.strftime("%-I:%M")},
+					{"key":"Time_12HHMMSS","value":time.strftime("%-I:%M:%S")},
+					{"key":"Time_24HHMM","value":time.strftime("%-H:%M")},
+					{"key":"Time_24HHMMSS","value":time.strftime("%-H:%M:%S")},
+					{"key":"Time_12HHMMAMPM","value":time.strftime("%-I:%M%p")},
+					{"key":"Time_12HHMMSSAMPM","value":time.strftime("%-I:%M:%S%p")},
+					{"key":"Time_24HHMMAMPM","value":time.strftime("%-H:%M%p")},
+					{"key":"Time_24HHMMSSAMPM","value":time.strftime("%-H:%M:%S%p")},
+					{"key":"Time_12HHMMAMPML","value":time.strftime("%-I:%M%p").lower()},
+					{"key":"Time_12HHMMSSAMPML","value":time.strftime("%-I:%M:%S%p").lower()},
+					{"key":"Time_24HHMMAMPML","value":time.strftime("%-H:%M%p").lower()},
+					{"key":"Time_24HHMMSSAMPML","value":time.strftime("%-H:%M%p").lower()},
+					{"key":"Time_12HMM","value":time.strftime("%I:%M")},
+					{"key":"Time_12HMMSS","value":time.strftime("%I:%M:%S")},
+					{"key":"Time_24HMM","value":time.strftime("%H:%M")},
+					{"key":"Time_24HMMSS","value":time.strftime("%H:%M:%S")},
+					{"key":"Time_12HMMAMPM","value":time.strftime("%I:%M%p")},
+					{"key":"Time_12HMMSSAMPM","value":time.strftime("%I:%M:%S%p")},
+					{"key":"Time_24HMMAMPM","value":time.strftime("%H:%M%p")},
+					{"key":"Time_24HMMSSAMPM","value":time.strftime("%H:%M:%S%p")},
+					{"key":"Time_12HMMAMPML","value":time.strftime("%I:%M%p").lower()},
+					{"key":"Time_12HMMSSAMPML","value":time.strftime("%I:%M:%S%p").lower()},
+					{"key":"Time_24HMMAMPML","value":time.strftime("%H:%M%p").lower()},
+					{"key":"Time_24HMMSSAMPML","value":time.strftime("%H:%M%p").lower()},
+					{"key":"LocalTime","value":time.strftime("%X")},
+					{"key":"Custom1","value":time.strftime(d.ownerProps.get("custom1",""))},
+					{"key":"Custom2","value":time.strftime(d.ownerProps.get("custom2",""))},
+					{"key":"Custom3","value":time.strftime(d.ownerProps.get("custom3",""))},
+					{"key":"Custom4","value":time.strftime(d.ownerProps.get("custom4",""))},
+					{"key":"Custom5","value":time.strftime(d.ownerProps.get("custom5",""))},
+					]
+					d.updateStatesOnServer(key_value_list)
 		
 					if (d.ownerProps.get("useSeconds",False)): #True
-						self.sleep(1) # in seconds
-					else:
-						self.sleep(30) # in seconds
+						self.sleepTime = 1
+				
+				self.sleep(self.sleepTime)
 		except self.StopThread:
 			pass

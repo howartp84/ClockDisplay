@@ -6,7 +6,27 @@
 			<Field type="checkbox" id="useSeconds" defaultValue="false">
 				<Label>Use seconds:</Label>
 				<Description>Include support for seconds?</Description>
-				</Field>
+			</Field>
+			<Field type="textfield" id="custom1" defaultValue="">
+				<Label>Custom format 1:</Label>
+				<Description>See https://docs.python.org/2/library/time.html#time.strftime for formats</Description>
+			</Field>
+			<Field type="textfield" id="custom2" defaultValue="">
+				<Label>Custom format 1:</Label>
+				<Description>See https://docs.python.org/2/library/time.html#time.strftime for formats</Description>
+			</Field>
+			<Field type="textfield" id="custom3" defaultValue="">
+				<Label>Custom format 1:</Label>
+				<Description>See https://docs.python.org/2/library/time.html#time.strftime for formats</Description>
+			</Field>
+			<Field type="textfield" id="custom4" defaultValue="">
+				<Label>Custom format 1:</Label>
+				<Description>See https://docs.python.org/2/library/time.html#time.strftime for formats</Description>
+			</Field>
+			<Field type="textfield" id="custom5" defaultValue="">
+				<Label>Custom format 1:</Label>
+				<Description>See https://docs.python.org/2/library/time.html#time.strftime for formats</Description>
+			</Field>
 		</ConfigUI>
 		<States>
 			<State id="DateUK_DDMMYY"><ValueType>String</ValueType><TriggerLabel>DateUK_DDMMYY</TriggerLabel><ControlPageLabel>DateUK_DDMMYY</ControlPageLabel></State>
@@ -41,6 +61,11 @@
 			<State id="Time_24HHMMSSAMPML"><ValueType>String</ValueType><TriggerLabel>Time_24HHMMSSAMPML</TriggerLabel><ControlPageLabel>Time_24HHMMSSAMPML</ControlPageLabel></State>
 			<State id="LocalDate"><ValueType>String</ValueType><TriggerLabel>LocalDate</TriggerLabel><ControlPageLabel>LocalDate</ControlPageLabel></State>
 			<State id="LocalTime"><ValueType>String</ValueType><TriggerLabel>LocalTime</TriggerLabel><ControlPageLabel>LocalTime</ControlPageLabel></State>
+			<State id="Custom1"><ValueType>String</ValueType><TriggerLabel>Custom1</TriggerLabel><ControlPageLabel>Custom1</ControlPageLabel></State>
+			<State id="Custom2"><ValueType>String</ValueType><TriggerLabel>Custom2</TriggerLabel><ControlPageLabel>Custom2</ControlPageLabel></State>
+			<State id="Custom3"><ValueType>String</ValueType><TriggerLabel>Custom3</TriggerLabel><ControlPageLabel>Custom3</ControlPageLabel></State>
+			<State id="Custom4"><ValueType>String</ValueType><TriggerLabel>Custom4</TriggerLabel><ControlPageLabel>Custom4</ControlPageLabel></State>
+			<State id="Custom5"><ValueType>String</ValueType><TriggerLabel>Custom5</TriggerLabel><ControlPageLabel>Custom5</ControlPageLabel></State>
 		</States>
 		<UiDisplayStateId>LocalTime</UiDisplayStateId>
 	</Device>

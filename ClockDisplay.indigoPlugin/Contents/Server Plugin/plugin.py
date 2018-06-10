@@ -12,6 +12,8 @@ import sys
 import time
 import datetime
 
+from sunrise_sunset import SunriseSunset
+
 # Note the "indigo" module is automatically imported and made available inside
 # our global name space by the host process.
 
@@ -32,15 +34,28 @@ class Plugin(indigo.PluginBase):
 	def deviceStartComm(self, dev):
 		dev.stateListOrDisplayStateIdChanged()
 		self.sleepTime = 30
+		latLong=indigo.server.getLatitudeAndLongitude()
+		myLat = latLong[0]
+		myLong = latLong[1]
+		tzOffset = int(time.strftime("%z")) / 100
+		ro = SunriseSunset(datetime.datetime.now(), latitude=myLat,longitude=myLong, localOffset=tzOffset)
+		self.rise_time, self.set_time = ro.calculate()
+		
+		self.rise_time = self.rise_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
+		self.set_time = self.set_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
+		
+		#self.set_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
+		#indigo.server.log(str(self.set_time))
+		#indigo.server.log(str(self.set_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))))
 
 	def runConcurrentThread(self):
 		try:
 			while True:
 			
 				for d in indigo.devices.iter("self.clockdisplay"):
+					if (time.strftime("%d/%m/%y") != d.states["DateUK_DDMMYY"]):
+						indigo.server.log("New Day")
 					key_value_list = [
-					#if (time.strftime("%d/%m/%y") != d.states["DateUK_DDMMYY"]):
-						#indigo.server.log("New Day")
 					{"key":"DateUK_DDMMYY","value":time.strftime("%d/%m/%y")},
 					{"key":"DateUK_DDMMYYYY","value":time.strftime("%d/%m/%Y")},
 					{"key":"DateUS_MMDDYY","value":time.strftime("%m/%d/%y")},
@@ -48,31 +63,33 @@ class Plugin(indigo.PluginBase):
 					{"key":"Day_Long","value":time.strftime("%A")},
 					{"key":"Day_Short","value":time.strftime("%a")},
 					{"key":"LocalDate","value":time.strftime("%x")},
-					{"key":"Time_12HHMM","value":time.strftime("%-I:%M")},
-					{"key":"Time_12HHMMSS","value":time.strftime("%-I:%M:%S")},
-					{"key":"Time_24HHMM","value":time.strftime("%-H:%M")},
-					{"key":"Time_24HHMMSS","value":time.strftime("%-H:%M:%S")},
-					{"key":"Time_12HHMMAMPM","value":time.strftime("%-I:%M%p")},
-					{"key":"Time_12HHMMSSAMPM","value":time.strftime("%-I:%M:%S%p")},
-					{"key":"Time_24HHMMAMPM","value":time.strftime("%-H:%M%p")},
-					{"key":"Time_24HHMMSSAMPM","value":time.strftime("%-H:%M:%S%p")},
-					{"key":"Time_12HHMMAMPML","value":time.strftime("%-I:%M%p").lower()},
-					{"key":"Time_12HHMMSSAMPML","value":time.strftime("%-I:%M:%S%p").lower()},
-					{"key":"Time_24HHMMAMPML","value":time.strftime("%-H:%M%p").lower()},
-					{"key":"Time_24HHMMSSAMPML","value":time.strftime("%-H:%M%p").lower()},
-					{"key":"Time_12HMM","value":time.strftime("%I:%M")},
-					{"key":"Time_12HMMSS","value":time.strftime("%I:%M:%S")},
-					{"key":"Time_24HMM","value":time.strftime("%H:%M")},
-					{"key":"Time_24HMMSS","value":time.strftime("%H:%M:%S")},
-					{"key":"Time_12HMMAMPM","value":time.strftime("%I:%M%p")},
-					{"key":"Time_12HMMSSAMPM","value":time.strftime("%I:%M:%S%p")},
-					{"key":"Time_24HMMAMPM","value":time.strftime("%H:%M%p")},
-					{"key":"Time_24HMMSSAMPM","value":time.strftime("%H:%M:%S%p")},
-					{"key":"Time_12HMMAMPML","value":time.strftime("%I:%M%p").lower()},
-					{"key":"Time_12HMMSSAMPML","value":time.strftime("%I:%M:%S%p").lower()},
-					{"key":"Time_24HMMAMPML","value":time.strftime("%H:%M%p").lower()},
-					{"key":"Time_24HMMSSAMPML","value":time.strftime("%H:%M%p").lower()},
+					{"key":"Time_12HHMM","value":time.strftime("%I:%M")},
+					{"key":"Time_12HHMMSS","value":time.strftime("%I:%M:%S")},
+					{"key":"Time_24HHMM","value":time.strftime("%H:%M")},
+					{"key":"Time_24HHMMSS","value":time.strftime("%H:%M:%S")},
+					{"key":"Time_12HHMMAMPM","value":time.strftime("%I:%M%p")},
+					{"key":"Time_12HHMMSSAMPM","value":time.strftime("%I:%M:%S%p")},
+					{"key":"Time_24HHMMAMPM","value":time.strftime("%H:%M%p")},
+					{"key":"Time_24HHMMSSAMPM","value":time.strftime("%H:%M:%S%p")},
+					{"key":"Time_12HHMMAMPML","value":time.strftime("%I:%M%p").lower()},
+					{"key":"Time_12HHMMSSAMPML","value":time.strftime("%I:%M:%S%p").lower()},
+					{"key":"Time_24HHMMAMPML","value":time.strftime("%H:%M%p").lower()},
+					{"key":"Time_24HHMMSSAMPML","value":time.strftime("%H:%M%p").lower()},
+					{"key":"Time_12HMM","value":time.strftime("%-I:%M")},
+					{"key":"Time_12HMMSS","value":time.strftime("%-I:%M:%S")},
+					{"key":"Time_24HMM","value":time.strftime("%-H:%M")},
+					{"key":"Time_24HMMSS","value":time.strftime("%-H:%M:%S")},
+					{"key":"Time_12HMMAMPM","value":time.strftime("%-I:%M%p")},
+					{"key":"Time_12HMMSSAMPM","value":time.strftime("%-I:%M:%S%p")},
+					{"key":"Time_24HMMAMPM","value":time.strftime("%-H:%M%p")},
+					{"key":"Time_24HMMSSAMPM","value":time.strftime("%-H:%M:%S%p")},
+					{"key":"Time_12HMMAMPML","value":time.strftime("%-I:%M%p").lower()},
+					{"key":"Time_12HMMSSAMPML","value":time.strftime("%-I:%M:%S%p").lower()},
+					{"key":"Time_24HMMAMPML","value":time.strftime("%-H:%M%p").lower()},
+					{"key":"Time_24HMMSSAMPML","value":time.strftime("%-H:%M%p").lower()},
 					{"key":"LocalTime","value":time.strftime("%X")},
+					{"key":"Sunrise","value":self.rise_time},
+					{"key":"Sunset","value":self.set_time},
 					{"key":"Custom1","value":time.strftime(d.ownerProps.get("custom1",""))},
 					{"key":"Custom2","value":time.strftime(d.ownerProps.get("custom2",""))},
 					{"key":"Custom3","value":time.strftime(d.ownerProps.get("custom3",""))},

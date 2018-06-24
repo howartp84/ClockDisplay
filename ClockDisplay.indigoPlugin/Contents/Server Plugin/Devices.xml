@@ -72,6 +72,11 @@
 			<State id="Custom3"><ValueType>String</ValueType><TriggerLabel>Custom3</TriggerLabel><ControlPageLabel>Custom3</ControlPageLabel></State>
 			<State id="Custom4"><ValueType>String</ValueType><TriggerLabel>Custom4</TriggerLabel><ControlPageLabel>Custom4</ControlPageLabel></State>
 			<State id="Custom5"><ValueType>String</ValueType><TriggerLabel>Custom5</TriggerLabel><ControlPageLabel>Custom5</ControlPageLabel></State>
+			<State id="Custom1L"><ValueType>String</ValueType><TriggerLabel>Custom1L</TriggerLabel><ControlPageLabel>Custom1L</ControlPageLabel></State>
+			<State id="Custom2L"><ValueType>String</ValueType><TriggerLabel>Custom2L</TriggerLabel><ControlPageLabel>Custom2L</ControlPageLabel></State>
+			<State id="Custom3L"><ValueType>String</ValueType><TriggerLabel>Custom3L</TriggerLabel><ControlPageLabel>Custom3L</ControlPageLabel></State>
+			<State id="Custom4L"><ValueType>String</ValueType><TriggerLabel>Custom4L</TriggerLabel><ControlPageLabel>Custom4L</ControlPageLabel></State>
+			<State id="Custom5L"><ValueType>String</ValueType><TriggerLabel>Custom5L</TriggerLabel><ControlPageLabel>Custom5L</ControlPageLabel></State>
 		</States>
 		<UiDisplayStateId>LocalTime</UiDisplayStateId>
 	</Device>

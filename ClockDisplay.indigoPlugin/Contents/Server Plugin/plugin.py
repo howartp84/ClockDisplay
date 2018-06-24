@@ -95,6 +95,11 @@ class Plugin(indigo.PluginBase):
 					{"key":"Custom3","value":time.strftime(d.ownerProps.get("custom3",""))},
 					{"key":"Custom4","value":time.strftime(d.ownerProps.get("custom4",""))},
 					{"key":"Custom5","value":time.strftime(d.ownerProps.get("custom5",""))},
+					{"key":"Custom1L","value":time.strftime(d.ownerProps.get("custom1","")).lower()},
+					{"key":"Custom2L","value":time.strftime(d.ownerProps.get("custom2","")).lower()},
+					{"key":"Custom3L","value":time.strftime(d.ownerProps.get("custom3","")).lower()},
+					{"key":"Custom4L","value":time.strftime(d.ownerProps.get("custom4","")).lower()},
+					{"key":"Custom5L","value":time.strftime(d.ownerProps.get("custom5","")).lower()},
 					]
 					d.updateStatesOnServer(key_value_list)
 		

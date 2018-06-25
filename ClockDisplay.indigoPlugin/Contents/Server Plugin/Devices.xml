@@ -31,6 +31,9 @@
 				<Label>Format for Sunrise/Sunset:</Label>
 				<Description>See https://docs.python.org/2/library/time.html#time.strftime for formats</Description>
 			</Field>
+			<Field id="durosityMode" type="checkbox">
+				<Label>Enable Durosity Mode:</Label>
+			</Field>
 		</ConfigUI>
 		<States>
 			<State id="DateUK_DDMMYY"><ValueType>String</ValueType><TriggerLabel>DateUK_DDMMYY</TriggerLabel><ControlPageLabel>DateUK_DDMMYY</ControlPageLabel></State>

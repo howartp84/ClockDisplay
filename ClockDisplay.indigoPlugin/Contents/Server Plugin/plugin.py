@@ -27,6 +27,7 @@ class Plugin(indigo.PluginBase):
 		self.dTimeDelta = -1576800000  #-10
 		self.dTime = time.time()
 		self.sleepTime = 30
+		self.dontStart = True
 
 	def closedPrefsConfigUi(self, valuesDict, userCancelled):
 		# Since the dialog closed we want to set the debug flag - if you don't directly use
@@ -57,9 +58,21 @@ class Plugin(indigo.PluginBase):
 		try:
 			while True:
 			
+				if (self.dontStart):
+					secs = time.strftime("%S")
+					#indigo.server.log(secs)
+					if (int(secs) > 1):
+						self.sleep(1)
+						continue
+					else:
+						indigo.server.log("Starting clock timer at {} seconds".format(secs))
+						self.dontStart = False
+			
 				for d in indigo.devices.iter("self.clockdisplay"):
-					#if (time.strftime("%d/%m/%y") != d.states["DateUK_DDMMYY"]):
-					#indigo.server.log("New Day")
+					if (time.strftime("%d/%m/%y") != d.states["DateUK_DDMMYY"]):
+						#indigo.server.log("New Day")
+						self.rise_time = self.rise_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
+						self.set_time = self.set_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
 					key_value_list = [
 					{"key":"DateUK_DDMMYY","value":time.strftime("%d/%m/%y")},
 					{"key":"DateUK_DDMMYYYY","value":time.strftime("%d/%m/%Y")},

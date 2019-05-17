@@ -28,6 +28,10 @@ class Plugin(indigo.PluginBase):
 		self.dTime = time.time()
 		self.sleepTime = 30
 		self.dontStart = True
+		
+		
+		
+		indigo.server.log("Waiting for system clock to reach :00 seconds...")
 
 	def closedPrefsConfigUi(self, valuesDict, userCancelled):
 		# Since the dialog closed we want to set the debug flag - if you don't directly use
@@ -41,10 +45,10 @@ class Plugin(indigo.PluginBase):
 		dev.stateListOrDisplayStateIdChanged()
 		self.sleepTime = 30
 		latLong=indigo.server.getLatitudeAndLongitude()
-		myLat = latLong[0]
-		myLong = latLong[1]
-		tzOffset = int(time.strftime("%z")) / 100
-		ro = SunriseSunset(datetime.datetime.now(), latitude=myLat,longitude=myLong, localOffset=tzOffset)
+		self.myLat = latLong[0]
+		self.myLong = latLong[1]
+		self.tzOffset = int(time.strftime("%z")) / 100
+		ro = SunriseSunset(datetime.datetime.now(), latitude=self.myLat,longitude=self.myLong, localOffset=self.tzOffset)
 		self.rise_time, self.set_time = ro.calculate()
 		
 		self.rise_time = self.rise_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
@@ -71,8 +75,11 @@ class Plugin(indigo.PluginBase):
 				for d in indigo.devices.iter("self.clockdisplay"):
 					if (time.strftime("%d/%m/%y") != d.states["DateUK_DDMMYY"]):
 						#indigo.server.log("New Day")
-						self.rise_time = self.rise_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
-						self.set_time = self.set_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
+						ro = SunriseSunset(datetime.datetime.now(), latitude=self.myLat,longitude=self.myLong, localOffset=self.tzOffset)
+						self.rise_time, self.set_time = ro.calculate()
+						
+						self.rise_time = self.rise_time.strftime(d.ownerProps.get("risesetformat","%H:%M"))
+						self.set_time = self.set_time.strftime(d.ownerProps.get("risesetformat","%H:%M"))
 					key_value_list = [
 					{"key":"DateUK_DDMMYY","value":time.strftime("%d/%m/%y")},
 					{"key":"DateUK_DDMMYYYY","value":time.strftime("%d/%m/%Y")},

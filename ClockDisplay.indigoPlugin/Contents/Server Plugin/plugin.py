@@ -80,6 +80,8 @@ class Plugin(indigo.PluginBase):
 						
 						self.rise_time = self.rise_time.strftime(d.ownerProps.get("risesetformat","%H:%M"))
 						self.set_time = self.set_time.strftime(d.ownerProps.get("risesetformat","%H:%M"))
+					minOfDay = (int(time.strftime("%H")) * 60)+int(time.strftime("%M"))
+					#indigo.server.log(str(minOfDay))
 					key_value_list = [
 					{"key":"DateUK_DDMMYY","value":time.strftime("%d/%m/%y")},
 					{"key":"DateUK_DDMMYYYY","value":time.strftime("%d/%m/%Y")},
@@ -115,6 +117,7 @@ class Plugin(indigo.PluginBase):
 					{"key":"LocalTime","value":time.strftime("%X")},
 					{"key":"Sunrise","value":self.rise_time},
 					{"key":"Sunset","value":self.set_time},
+					{"key":"MinuteOfDay","value":str(minOfDay)},
 					{"key":"Custom1","value":time.strftime(d.ownerProps.get("custom1",""))},
 					{"key":"Custom2","value":time.strftime(d.ownerProps.get("custom2",""))},
 					{"key":"Custom3","value":time.strftime(d.ownerProps.get("custom3",""))},

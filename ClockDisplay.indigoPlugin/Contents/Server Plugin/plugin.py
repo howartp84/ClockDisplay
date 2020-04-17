@@ -73,8 +73,10 @@ class Plugin(indigo.PluginBase):
 						self.dontStart = False
 			
 				for d in indigo.devices.iter("self.clockdisplay"):
-					if (time.strftime("%d/%m/%y") != d.states["DateUK_DDMMYY"]):
+					self.tzOffset = int(time.strftime("%z")) / 100 #Get timezone in case it changed this morning
+					if ((self.tzOffset != d.states["TZ_Offset"]) or (time.strftime("%d/%m/%y") != d.states["DateUK_DDMMYY"])):
 						#indigo.server.log("New Day")
+						
 						ro = SunriseSunset(datetime.datetime.now(), latitude=self.myLat,longitude=self.myLong, localOffset=self.tzOffset)
 						self.rise_time, self.set_time = ro.calculate()
 						
@@ -117,6 +119,7 @@ class Plugin(indigo.PluginBase):
 					{"key":"LocalTime","value":time.strftime("%X")},
 					{"key":"Sunrise","value":self.rise_time},
 					{"key":"Sunset","value":self.set_time},
+					{"key":"TZ_Offset","value":self.tzOffset},
 					{"key":"MinuteOfDay","value":str(minOfDay)},
 					{"key":"Custom1","value":time.strftime(d.ownerProps.get("custom1",""))},
 					{"key":"Custom2","value":time.strftime(d.ownerProps.get("custom2",""))},

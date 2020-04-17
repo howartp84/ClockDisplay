@@ -70,6 +70,7 @@
 			<State id="LocalTime"><ValueType>String</ValueType><TriggerLabel>LocalTime</TriggerLabel><ControlPageLabel>LocalTime</ControlPageLabel></State>
 			<State id="Sunrise"><ValueType>String</ValueType><TriggerLabel>Sunrise</TriggerLabel><ControlPageLabel>Sunrise</ControlPageLabel></State>
 			<State id="Sunset"><ValueType>String</ValueType><TriggerLabel>Sunset</TriggerLabel><ControlPageLabel>Sunset</ControlPageLabel></State>
+			<State id="TZ_Offset"><ValueType>String</ValueType><TriggerLabel>TZ_Offset</TriggerLabel><ControlPageLabel>TZ_Offset</ControlPageLabel></State>
 			<State id="MinuteOfDay"><ValueType>String</ValueType><TriggerLabel>MinuteOfDay</TriggerLabel><ControlPageLabel>MinuteOfDay</ControlPageLabel></State>
 			<State id="Custom1"><ValueType>String</ValueType><TriggerLabel>Custom1</TriggerLabel><ControlPageLabel>Custom1</ControlPageLabel></State>
 			<State id="Custom2"><ValueType>String</ValueType><TriggerLabel>Custom2</TriggerLabel><ControlPageLabel>Custom2</ControlPageLabel></State>

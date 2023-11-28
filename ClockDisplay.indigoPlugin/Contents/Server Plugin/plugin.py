@@ -28,9 +28,9 @@ class Plugin(indigo.PluginBase):
 		self.dTime = time.time()
 		self.sleepTime = 30
 		self.dontStart = True
-		
-		
-		
+
+
+
 		indigo.server.log("Waiting for system clock to reach :00 seconds...")
 
 	def closedPrefsConfigUi(self, valuesDict, userCancelled):
@@ -40,7 +40,7 @@ class Plugin(indigo.PluginBase):
 		if not userCancelled:
 			self.useSeconds = valuesDict.get("useSeconds", False)
 		return True
-		
+
 	def deviceStartComm(self, dev):
 		dev.stateListOrDisplayStateIdChanged()
 		self.sleepTime = 30
@@ -50,10 +50,10 @@ class Plugin(indigo.PluginBase):
 		self.tzOffset = int(time.strftime("%z")) / 100
 		ro = SunriseSunset(datetime.datetime.now(), latitude=self.myLat,longitude=self.myLong, localOffset=self.tzOffset)
 		self.rise_time, self.set_time = ro.calculate()
-		
+
 		self.rise_time = self.rise_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
 		self.set_time = self.set_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
-		
+
 		#self.set_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))
 		#indigo.server.log(str(self.set_time))
 		#indigo.server.log(str(self.set_time.strftime(dev.ownerProps.get("risesetformat","%H:%M"))))
@@ -61,7 +61,7 @@ class Plugin(indigo.PluginBase):
 	def runConcurrentThread(self):
 		try:
 			while True:
-			
+
 				if (self.dontStart):
 					secs = time.strftime("%S")
 					#indigo.server.log(secs)
@@ -71,15 +71,15 @@ class Plugin(indigo.PluginBase):
 					else:
 						indigo.server.log("Starting clock timer at {} seconds".format(secs))
 						self.dontStart = False
-			
+
 				for d in indigo.devices.iter("self.clockdisplay"):
 					self.tzOffset = int(time.strftime("%z")) / 100 #Get timezone in case it changed this morning
 					if ((self.tzOffset != d.states["TZ_Offset"]) or (time.strftime("%d/%m/%y") != d.states["DateUK_DDMMYY"])):
 						#indigo.server.log("New Day")
-						
+
 						ro = SunriseSunset(datetime.datetime.now(), latitude=self.myLat,longitude=self.myLong, localOffset=self.tzOffset)
 						self.rise_time, self.set_time = ro.calculate()
-						
+
 						self.rise_time = self.rise_time.strftime(d.ownerProps.get("risesetformat","%H:%M"))
 						self.set_time = self.set_time.strftime(d.ownerProps.get("risesetformat","%H:%M"))
 					minOfDay = (int(time.strftime("%H")) * 60)+int(time.strftime("%M"))
@@ -118,7 +118,9 @@ class Plugin(indigo.PluginBase):
 					{"key":"Time_24HMMSSAMPML","value":time.strftime("%-H:%M%p").lower()},
 					{"key":"LocalTime","value":time.strftime("%X")},
 					{"key":"Sunrise","value":self.rise_time},
+					{"key":"SunriseL","value":self.rise_time.lower()},
 					{"key":"Sunset","value":self.set_time},
+					{"key":"SunsetL","value":self.set_time.lower()},
 					{"key":"TZ_Offset","value":self.tzOffset},
 					{"key":"MinuteOfDay","value":str(minOfDay)},
 					{"key":"Custom1","value":time.strftime(d.ownerProps.get("custom1",""))},
@@ -133,10 +135,10 @@ class Plugin(indigo.PluginBase):
 					{"key":"Custom5L","value":time.strftime(d.ownerProps.get("custom5","")).lower()},
 					]
 					d.updateStatesOnServer(key_value_list)
-		
+
 					if (d.ownerProps.get("useSeconds",False)): #True
 						self.sleepTime = 1
-				
+
 				self.sleep(self.sleepTime)
 		except self.StopThread:
 			pass
